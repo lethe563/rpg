@@ -1,5 +1,7 @@
 def combat(health, enemy_health, attack, enemy_attack):
+    print("Enemy health: " + str(enemy_health))
     while health > 0 and enemy_health > 0:
+
         command = input("Do you wish to attack? (y/n)")
         if command == "y":
             enemy_health -= attack
@@ -11,14 +13,22 @@ def combat(health, enemy_health, attack, enemy_attack):
         else:
             print("Please enter either y or n")
 
+    return(health)
+
 
 
 def main():
-    health = 100
+    health = 100 #User's health
     enemy_health = 100
     attack = 10
     enemy_attack = 5
+    dead = False #If the user is dead, change to True
+    while dead == False:
 
-    combat(health, enemy_health, attack, enemy_attack)
+        health = combat(health, enemy_health, attack, enemy_attack)
+        if health <= 0:
+            dead = True
 
+
+    print("You are dead.")
 main()
