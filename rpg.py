@@ -1,8 +1,8 @@
 import json
 import random
 
-def combat(health, enemy_health, attack, enemy_attack):
-    print("Enemy health: " + str(enemy_health))
+def combat(health, attack, enemy_name, enemy_health, enemy_attack):
+    print("Enemy name: " + enemy_name + "\nEnemy health: " + str(enemy_health))
     while health > 0 and enemy_health > 0:
 
         command = input("Do you wish to attack? (y/n)")
@@ -29,14 +29,14 @@ def baddies():
 def main():
     health = 100 #User's health
     attack = 10 #User's attack strength
-    enemy = baddies() #Generating random enemy from baddies()
-    enemy_name = enemy["name"]
-    enemy_health = enemy["health"]
-    enemy_attack = enemy["attack"]
-    dead = True #If the user is dead, change to True
-    while dead == False:
 
-        health = combat(health, enemy_health, attack, enemy_attack)
+    dead = False #If the user is dead, change to True
+    while dead == False:
+        enemy = baddies() #Generating random enemy from baddies()
+        enemy_name = enemy["name"]
+        enemy_health = int(enemy["health"])
+        enemy_attack = int(enemy["attack"])
+        health = combat(health, attack, enemy_name, enemy_health, enemy_attack)
         if health <= 0:
             dead = True
 
