@@ -18,6 +18,15 @@ def combat(health, attack, enemy_name, enemy_health, enemy_attack):
 
     return(health)
 
+def rooms():
+
+    material_list = ["Wood", "Stone", "Metal", "Mud"] #Possible materials
+    material = random.choice(material_list) #Choosing the material at random
+    size_list = ["Small", "Medium", "Big"] #Possible sizes of the rooms
+    size = random.choice(size_list) #Choosing the size of the room at random
+    room = [size, material] #Building room
+    return room
+
 def baddies():
 
     baddies_file = open("baddies.txt", "r") #Open file with list of enemies.
@@ -32,6 +41,8 @@ def main():
 
     dead = False #If the user is dead, change to True
     while dead == False:
+        room = rooms()
+        print("You are in a " + room[0] + " " + room[1] + " room.")
         enemy = baddies() #Generating random enemy from baddies()
         enemy_name = enemy["name"]
         enemy_health = int(enemy["health"])
@@ -40,6 +51,6 @@ def main():
         if health <= 0:
             dead = True
 
-
+    rooms()
     print("You are dead.")
 main()
