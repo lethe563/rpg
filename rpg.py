@@ -20,23 +20,25 @@ def combat(health, enemy_health, attack, enemy_attack):
 
 def baddies():
 
-    baddies_file = open("baddies.txt", "r")
-    baddies_list = json.loads(baddies_file.read())
-    baddie = random.choice(list(baddies_list))
+    baddies_file = open("baddies.txt", "r") #Open file with list of enemies.
+    baddies_list = json.loads(baddies_file.read()) #Pulling list of enemies and arranging as json.
+    random_baddie = random.choice(list(baddies_list)) #Pulling a random enemy name from the list.
+    baddie = baddies_list[random_baddie] #Pulling the dictonary for the enemy, by using the name generated in random_baddie line, as a key.
     return baddie
 
 def main():
     health = 100 #User's health
-    enemy_health = 100
-    attack = 10
-    enemy_attack = 5
-    dead = False #If the user is dead, change to True
+    attack = 10 #User's attack strength
+    enemy = baddies() #Generating random enemy from baddies()
+    enemy_name = enemy["name"]
+    enemy_health = enemy["health"]
+    enemy_attack = enemy["attack"]
+    dead = True #If the user is dead, change to True
     while dead == False:
 
         health = combat(health, enemy_health, attack, enemy_attack)
         if health <= 0:
             dead = True
-
 
 
     print("You are dead.")
