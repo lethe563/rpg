@@ -1,0 +1,17 @@
+{
+"Gormagon" : {
+"name" : "Gormagon",
+"health" : "200",
+"attack" : "20"
+}
+, "Cyclops" : {
+"name" : "Cyclops",
+"health" : "100",
+"attack" : "10"
+}
+, "Deadite" : {
+"name" : "Deadite",
+"health" : "50",
+"attack" : "5"
+}
+}

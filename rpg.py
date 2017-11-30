@@ -1,3 +1,6 @@
+import json
+import random
+
 def combat(health, enemy_health, attack, enemy_attack):
     print("Enemy health: " + str(enemy_health))
     while health > 0 and enemy_health > 0:
@@ -15,7 +18,12 @@ def combat(health, enemy_health, attack, enemy_attack):
 
     return(health)
 
+def baddies():
 
+    baddies_file = open("baddies.txt", "r")
+    baddies_list = json.loads(baddies_file.read())
+    baddie = random.choice(list(baddies_list))
+    return baddie
 
 def main():
     health = 100 #User's health
@@ -28,6 +36,7 @@ def main():
         health = combat(health, enemy_health, attack, enemy_attack)
         if health <= 0:
             dead = True
+
 
 
     print("You are dead.")
