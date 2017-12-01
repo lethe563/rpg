@@ -1,0 +1,12 @@
+{
+"armour": {
+"defence rating": "10",
+"type": "armour",
+"name": "Armour of Champions"
+},
+"weapon": {
+"type": "weapon",
+"name": "Sword of smiting",
+"attack rating": "100"
+}
+}
