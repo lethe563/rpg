@@ -1,13 +1,13 @@
 {
 "1" : {
 "name" : "Sword of destiny",
-"type" : "weapon",
-"attack rating" : "20"
+"attack rating" : "20",
+"type" : "weapon"
 },
 "2" : {
 "name" : "Sword of smiting",
-"type" : "weapon",
-"attack rating" : "100"
+"attack rating" : "100",
+"type" : "weapon"
 },
 "3" : {
 "name" : "Armour of Champions",

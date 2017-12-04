@@ -19,6 +19,8 @@ def combat(health, attack, enemy_name, enemy_health, enemy_attack):
 
     return(health)
 
+
+
 def equipment():
     equipment_file = open("equipment.txt", "r+")
     equipment_list = json.loads(equipment_file.read())
@@ -27,18 +29,6 @@ def equipment():
     made_choice = False
     choose_item = input("Armour: " + equipment_list["armour"]["name"] + "\nWeapon: " + equipment_list["weapon"]["name"] + "\nWhich would you like to change? w/a/n(one)")
     while made_choice == False:
-        if choose_item == "w":
-            for item in inventory_list:
-                if inventory_list[item]["type"] == "weapon":
-                    print(item + ". " + inventory_list[item]["name"])
-            choose_inventory = input("What would you like to choose? (number)")
-            equipment_list["weapon"] = inventory_list[choose_inventory]
-            equipment_file.seek(0)
-            equipment_file.truncate()
-            #equipment_file = equipment_list
-            json.dump(equipment_list, equipment_file, indent = 0)
-            made_choice = True
-
         if choose_item == "a":
             for item in inventory_list:
                 if inventory_list[item]["type"] == "armour":
@@ -49,15 +39,22 @@ def equipment():
             equipment_file.truncate()
             json.dump(equipment_list, equipment_file, indent = 0)
             made_choice = True
-
-
-
+        elif choose_item == "w":
+            for item in inventory_list:
+                if inventory_list[item]["type"] == "weapon":
+                    print(item + ". " + inventory_list[item]["name"])
+            choose_inventory = input("What would you like to choose? (number)")
+            equipment_list["weapon"] = inventory_list[choose_inventory]
+            equipment_file.seek(0)
+            equipment_file.truncate()
+            json.dump(equipment_list, equipment_file, indent = 0)
+            made_choice = True
         elif choose_item == "n":
             made_choice = True
-
         else:
             print("Please choose w/a/n")
             made_choice = False
+    equipment_file.close()
 
 def rooms():
     material_list = ["Wood", "Stone", "Metal", "Mud"] #Possible materials
@@ -112,12 +109,41 @@ def death(health):
         dead = False
     return dead
 
+def mapper(input_x, input_y):
+    map_file = open("map.txt", "r+")
+    map_list = json.loads(map_file.read())
+    traveled_to = False
+    for room in map_list:
+        print(room)
+        if map_list[room]["x"] == input_x and map_list[room]["y"] == input_y:
+            print("Room alrady traveled to.")
+            traveled_to = True
+            break
+
+
+    if traveled_to == False:
+        new_length_of_list = len(map_list)+1
+        map_list[new_length_of_list] = {}
+        map_list[new_length_of_list]["x"] = input_x
+        map_list[new_length_of_list]["y"] = input_y
+        map_file.seek(0)
+        map_file.truncate()
+        json.dump(map_list, map_file, indent = 0)
+
+
+
+
+
+
+
+
 def main():
     health = 100 #User's health
     attack = 10 #User's attack strength
     first_time = True
     dead = False #If the user is dead, change to True
     while dead == False: #While the player is still alive
+        mapper("3","3")
         room, enemy = next_step(first_time)
         first_time = False
         if room == "quit":
