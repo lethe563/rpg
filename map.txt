@@ -1,44 +1,16 @@
 {
 "1": {
-"baddies": {
-"name": "Cyclops"
-},
-"x": "0",
-"y": "0",
-"chest": {
-"name": "wood",
-"open": "True"
-}
-},
-"3": {
 "x": "2",
-"y": "1"
+"y": "2",
+"baddies2": {
+"name": "Deadite",
+"attack": "5",
+"health": "50"
 },
-"4": {
-"x": "2",
-"y": "2"
-},
-"6": {
-"x": "3",
-"y": "3"
-},
-"5": {
-"x": "3",
-"y": "2"
-},
-"7": {
-"x": "5",
-"y": "5"
-},
-"2": {
-"baddies": {
-"name": "Deadite"
-},
-"x": "1",
-"y": "0",
-"chest": {
-"name": "steel",
-"open": "False"
+"baddies1": {
+"name": "Deadite",
+"attack": "5",
+"health": "50"
 }
 }
 }

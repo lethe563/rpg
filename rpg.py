@@ -10,7 +10,7 @@ def main():
     first_time = True
     dead = False #If the user is dead, change to True
     while dead == False: #While the player is still alive
-        enviroment.mapper("5","5")
+        enviroment.mapper("2","2")
         room, enemy = action.next_step(first_time)
         first_time = False
         if room == "quit":

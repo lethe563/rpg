@@ -9,7 +9,7 @@ def mapper(input_x, input_y):
     map_list = json.loads(map_file.read())
     traveled_to = False
     for room in map_list:
-        print(room)
+        #print(room)
         if map_list[room]["x"] == input_x and map_list[room]["y"] == input_y:
             print("Room alrady traveled to.")
             traveled_to = True
@@ -20,6 +20,11 @@ def mapper(input_x, input_y):
         map_list[new_length_of_list] = {}
         map_list[new_length_of_list]["x"] = input_x
         map_list[new_length_of_list]["y"] = input_y
+        #number_of_baddies = str(random.randint(1, 3))
+        #print(number_of_baddies)
+        for i in range(1, 3):
+            print(i)
+            map_list[new_length_of_list]["baddies" + str(i)]=baddies()
         map_file.seek(0)
         map_file.truncate()
         json.dump(map_list, map_file, indent = 0)
