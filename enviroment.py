@@ -4,7 +4,7 @@ import enviroment
 import json
 import random
 
-def mapper(input_x, input_y):
+def generator(input_x, input_y):
     map_file = open("map.txt", "r+")
     map_list = json.loads(map_file.read())
     traveled_to = False
@@ -20,11 +20,13 @@ def mapper(input_x, input_y):
         map_list[new_length_of_list] = {}
         map_list[new_length_of_list]["x"] = input_x
         map_list[new_length_of_list]["y"] = input_y
-        #number_of_baddies = str(random.randint(1, 3))
-        #print(number_of_baddies)
-        for i in range(1, 3):
+        room = rooms()
+        map_list[new_length_of_list]["size"] = room[0]
+        map_list[new_length_of_list]["material"] = room[1]
+
+        for i in range(1, 3): #Populating the room with enemies
             print(i)
-            map_list[new_length_of_list]["baddies" + str(i)]=baddies()
+            map_list[new_length_of_list]["baddie" + str(i)]=baddies()
         map_file.seek(0)
         map_file.truncate()
         json.dump(map_list, map_file, indent = 0)

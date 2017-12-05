@@ -1,16 +1,2 @@
 {
-"1": {
-"x": "2",
-"y": "2",
-"baddies2": {
-"name": "Deadite",
-"attack": "5",
-"health": "50"
-},
-"baddies1": {
-"name": "Deadite",
-"attack": "5",
-"health": "50"
-}
-}
 }
