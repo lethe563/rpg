@@ -1,12 +1,12 @@
 {
-"armour": {
-"defence rating": "1",
-"type": "armour",
-"name": "Leather helmet"
-},
 "weapon": {
-"attack rating": "100",
 "type": "weapon",
-"name": "Sword of smiting"
+"name": "Sword of smiting",
+"attack rating": "100"
+},
+"armour": {
+"defence rating": "10",
+"type": "armour",
+"name": "Armour of Champions"
 }
 }

@@ -1,2 +1,13 @@
 {
+"1": {
+"size": "Big",
+"material": "Mud",
+"x": 0,
+"baddie2": {
+"health": "200",
+"attack": "20",
+"name": "Gormagon"
+},
+"y": 0
+}
 }

@@ -56,3 +56,14 @@ def current_room(current_x, current_y):
             baddie_health = float(map_list[i]["baddie1"]["health"])
             baddie_attack = float(map_list[i]["baddie1"]["attack"])
     return room_number, size, material, baddie_name, baddie_health, baddie_attack
+
+def change_current_room(room_number, enemy_health):
+        map_file = open("map.txt", "r+")
+        map_list = json.loads(map_file.read())
+        if enemy_health <= 0:
+            del map_list[room_number]["baddie1"]
+        else:
+            map_list[room_number]["baddie1"]["health"] = enemy_health
+        map_file.seek(0)
+        map_file.truncate()
+        json.dump(map_list, map_file, indent = 0)

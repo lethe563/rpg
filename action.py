@@ -4,16 +4,21 @@ import enviroment
 import json
 import random
 
-def combat(health, attack, enemy_name, enemy_health, enemy_attack):
-    while health > 0 and float(enemy_health) > 0:
+def combat(health, attack, enemy_name, enemy_health, enemy_attack, room_number):
+    while health > 0 and enemy_health > 0:
         command = input("Do you wish to attack? (y/n)d")
         if command == "y":
             enemy_health -= attack * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
             health -= enemy_attack * random.random() #Damage inflicted on you is your enemy's attack rating times a random number between 0 and 1
-            print("Success!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemy_health))
+            if enemy_health <= 0:
+                print("Your enemy is defeated!")
+            else:
+                print("Success!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemy_health))
+            enviroment.change_current_room(room_number, enemy_health)
         elif command == "n":
             health -= enemy_attack
             print("Failure! Just press y next time!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemy_health))
+            enviroment.change_current_room(room_number, enemy_health)
         elif command == "d": #Die for testing
             break
         else:
@@ -32,23 +37,18 @@ def next_step(first_time, current_x, current_y):
 
         if quest == "y":
             decision = True
-            #enviroment.generator(current_x, current_y)
         elif quest == "n":
             decision = True
             current_y = current_y + 1
-            #enviroment.generator(current_x, current_y)
         elif quest == "s":
             decision = True
             current_y = current_y - 1
-            #enviroment.generator(current_x, current_y)
         elif quest == "e":
             decision = True
             current_x = current_x + 1
-            #enviroment.generator(current_x, current_y)
         elif quest == "w":
             decision = True
             current_y = current_y - 1
-            #enviroment.generator(current_x, current_y)
         elif quest == "q": #End game
             decision = True #To break the while decision loop
             continue_quest = False
