@@ -1,40 +1,44 @@
 {
-"2": {
-"chest": {
-"open": "False",
-"name": "steel"
-},
-"y": "0",
+"1": {
 "baddies": {
-"name": "Deadite"
+"name": "Cyclops"
 },
-"x": "1"
-},
-"4": {
-"x": "2",
-"y": "2"
+"x": "0",
+"y": "0",
+"chest": {
+"name": "wood",
+"open": "True"
+}
 },
 "3": {
 "x": "2",
 "y": "1"
 },
+"4": {
+"x": "2",
+"y": "2"
+},
 "6": {
 "x": "3",
 "y": "3"
 },
-"1": {
-"chest": {
-"open": "True",
-"name": "wood"
-},
-"y": "0",
-"baddies": {
-"name": "Cyclops"
-},
-"x": "0"
-},
 "5": {
 "x": "3",
 "y": "2"
+},
+"7": {
+"x": "5",
+"y": "5"
+},
+"2": {
+"baddies": {
+"name": "Deadite"
+},
+"x": "1",
+"y": "0",
+"chest": {
+"name": "steel",
+"open": "False"
+}
 }
 }
