@@ -4,21 +4,21 @@ import enviroment
 import json
 import random
 
-def combat(health, attack, enemy_name, enemy_health, enemy_attack, room_number):
-    while health > 0 and enemy_health > 0:
+def combat(health, attack, enemies, room_number):
+    while health > 0 and float(enemies["1"]["health"]) > 0:
         command = input("Do you wish to attack? (y/n)d")
         if command == "y":
-            enemy_health -= attack * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
-            health -= enemy_attack * random.random() #Damage inflicted on you is your enemy's attack rating times a random number between 0 and 1
-            if enemy_health <= 0:
+            enemies["1"]["health"] -= attack * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
+            health -= enemies["1"]["attack"] * random.random() #Damage inflicted on you is your enemy's attack rating times a random number between 0 and 1
+            if enemies["1"]["health"] <= 0:
                 print("Your enemy is defeated!")
             else:
-                print("Success!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemy_health))
-            enviroment.change_current_room(room_number, enemy_health)
+                print("Success!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemies["1"]["health"]))
+            enviroment.change_current_room(room_number, enemies["1"]["health"], enemies["1"])
         elif command == "n":
-            health -= enemy_attack
-            print("Failure! Just press y next time!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemy_health))
-            enviroment.change_current_room(room_number, enemy_health)
+            health -= enemies["1"]["attack"]
+            print("Failure! Just press y next time!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemies["1"]["health"]))
+            enviroment.change_current_room(room_number, enemies["1"]["health"], enemies["1"])
         elif command == "d": #Die for testing
             break
         else:
