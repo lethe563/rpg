@@ -1,12 +1,12 @@
 {
-"weapon": {
-"type": "weapon",
-"name": "Sword of destiny",
-"attack rating": "20"
-},
 "armour": {
 "defence rating": "1",
-"name": "Leather helmet",
-"type": "armour"
+"type": "armour",
+"name": "Leather helmet"
+},
+"weapon": {
+"attack rating": "100",
+"type": "weapon",
+"name": "Sword of smiting"
 }
 }

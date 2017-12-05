@@ -9,7 +9,6 @@ def generator(input_x, input_y):
     map_list = json.loads(map_file.read())
     traveled_to = False
     for room in map_list:
-        #print(room)
         if map_list[room]["x"] == input_x and map_list[room]["y"] == input_y:
             print("Room alrady traveled to.")
             traveled_to = True
@@ -25,7 +24,6 @@ def generator(input_x, input_y):
         map_list[new_length_of_list]["material"] = room[1]
 
         for i in range(1, 3): #Populating the room with enemies
-            print(i)
             map_list[new_length_of_list]["baddie" + str(i)]=baddies()
         map_file.seek(0)
         map_file.truncate()
@@ -45,3 +43,16 @@ def baddies():
     random_baddie = random.choice(list(baddies_list)) #Pulling a random enemy name from the list.
     baddie = baddies_list[random_baddie] #Pulling the dictonary for the enemy, by using the name generated in random_baddie line, as a key.
     return baddie
+
+def current_room(current_x, current_y):
+    map_file = open("map.txt", "r+")
+    map_list = json.loads(map_file.read())
+    for i in map_list:
+        if map_list[i]["x"] == current_x and map_list[i]["y"] == current_y:
+            room_number = i
+            size = map_list[i]["size"]
+            material = map_list[i]["material"]
+            baddie_name = map_list[i]["baddie1"]["name"]
+            baddie_health = float(map_list[i]["baddie1"]["health"])
+            baddie_attack = float(map_list[i]["baddie1"]["attack"])
+    return room_number, size, material, baddie_name, baddie_health, baddie_attack
