@@ -13,25 +13,32 @@ def combat(health, attack, enemies, enemy_number, room_number):
         print("Your enemy is defeated!")
     enviroment.change_current_room(room_number, enemies[enemy_number]["health"], enemy_number)
     enviroment.change_character(health, 0, 0)
+    return health, enemies, enemy_number
 
 
-def travel(current_x, current_y):
+def travel():
 
+    character_file = open("character.txt", "r+")
+    character = json.loads(character_file.read())
+    quest = input("Which direction would you like to go? n/s/e/w")
     if quest == "n":
-        current_y = current_y + 1
+        character["y"] = character["y"] + 1
     elif quest == "s":
-        current_y = current_y - 1
+        character["y"] = character["y"] - 1
     elif quest == "e":
-        current_x = current_x + 1
+        character["x"] = character["x"] + 1
     elif quest == "w":
-        current_y = current_y - 1
+        character["x"] = character["x"] - 1
 
+    character_file.seek(0)
+    character_file.truncate()
+    json.dump(character, character_file, indent = 0)
 
-    return current_x, current_y, continue_quest
+def death():
+    character_file = open("character.txt", "r+")
+    character = json.loads(character_file.read())
 
-def death(health):
-    dead = True
-    if health <= 0:
+    if character["health"] <= 0:
         dead = True
         print("You are dead")
     else:

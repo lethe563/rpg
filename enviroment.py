@@ -5,12 +5,16 @@ import interface
 import json
 import random
 
-def generator(input_x, input_y):
+def generator():
     map_file = open("map.txt", "r+")
     map_list = json.loads(map_file.read())
+    character_file = open("character.txt", "r")
+    character = json.loads(character_file.read())
+    current_x = character["x"]
+    current_y = character["y"]
     traveled_to = False
     for room in map_list:
-        if map_list[room]["x"] == input_x and map_list[room]["y"] == input_y:
+        if map_list[room]["x"] == current_x and map_list[room]["y"] == current_y:
             print("Room alrady traveled to.")
             traveled_to = True
             break
@@ -18,8 +22,8 @@ def generator(input_x, input_y):
     if traveled_to == False:
         new_length_of_list = len(map_list)+1 #Room number
         map_list[new_length_of_list] = {}
-        map_list[new_length_of_list]["x"] = input_x
-        map_list[new_length_of_list]["y"] = input_y
+        map_list[new_length_of_list]["x"] = current_x
+        map_list[new_length_of_list]["y"] = current_y
         room = rooms()
         map_list[new_length_of_list]["size"] = room[0]
         map_list[new_length_of_list]["material"] = room[1]
@@ -30,7 +34,7 @@ def generator(input_x, input_y):
             map_list[new_length_of_list]["baddies"][i] = baddies()
         map_file.seek(0)
         map_file.truncate()
-        json.dump(map_list, map_file, indent = 0, sort_keys = True)
+        json.dump(map_list, map_file, indent = 0)
 
 def rooms():
     material_list = ["Wood", "Stone", "Metal", "Mud"] #Possible materials
@@ -51,21 +55,27 @@ def current_room(current_x, current_y):
     map_file = open("map.txt", "r+")
     map_list = json.loads(map_file.read())
     baddies = {}
+    room_number = ""
+    size = ""
+    material = ""
+    number_of_baddies = ""
     for i in map_list:
         if map_list[i]["x"] == current_x and map_list[i]["y"] == current_y:
             room_number = i
             size = map_list[i]["size"]
             material = map_list[i]["material"]
-            number_of_baddies = int(map_list[str(room_number)]["number_of_baddies"])
+            size = map_list[str(i)]["size"]
+            material = map_list[str(i)]["material"]
+            number_of_baddies = int(map_list[str(i)]["number_of_baddies"])
             for j in range(1, number_of_baddies + 1):
                 baddies[j] = {}
-                baddies[j]["name"] = map_list[str(room_number)]["baddies"][str(j)]["name"]
+                baddies[j]["name"] = map_list[str(i)]["baddies"][str(j)]["name"]
                 baddies[j]["health"] = float(map_list[i]["baddies"][str(j)]["health"])
                 baddies[j]["attack"] = int(map_list[i]["baddies"][str(j)]["attack"])
     return room_number, size, material, baddies, number_of_baddies
 
 def change_current_room(room_number, enemy_health, baddie_number):
-        print("numbers: " + str(room_number) + str(baddie_number))
+        #print("numbers: " + str(room_number) + str(baddie_number))
         map_file = open("map.txt", "r+")
         map_list = json.loads(map_file.read())
         if enemy_health <= 0:
