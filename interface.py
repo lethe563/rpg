@@ -25,7 +25,7 @@ def room():
     continue_quest = True
     room_number, room_size, room_material, enemies, number_of_enemies = enviroment.current_room(current_x, current_y)
     print_current_room(current_x, current_y)
-    decision = input("What would you like to do? (a)ttack, (t)ravel ")
+    decision = input("What would you like to do? (a)ttack, (t)ravel, (e)quipment, (q)uit: ")
     if decision == "a":
         attack_mode = True
         while attack_mode == True:
@@ -37,6 +37,8 @@ def room():
                 print_current_room(current_x, current_y)
     elif decision == "t":
         action.travel()
+    elif decision == "e":
+        equipment.change_equipment()
     elif decision == "q":
         continue_quest = False
 
