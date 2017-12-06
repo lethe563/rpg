@@ -1,2 +1,17 @@
 {
+"1": {
+"number_of_baddies": 1,
+"size": "Big",
+"material": "Wood",
+"x": 0,
+"y": 0,
+"baddies": {
+"1": "dead",
+"2": {
+"health": "100",
+"attack": "10",
+"name": "Cyclops"
+}
+}
+}
 }
