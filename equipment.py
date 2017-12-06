@@ -40,9 +40,9 @@ def change_equipment():
             made_choice = False
     equipment_file.close()
 
-def loot_pile():
+def loot():
     loot_file = open("items.txt", "r")
     loot_list = json.loads(loot_file.read())
     random_loot = random.choice(list(loot_list))
     loot = loot_list[random_loot]
-    return baddie
+    return loot

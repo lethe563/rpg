@@ -77,3 +77,29 @@ def change_current_room(room_number, enemy_health, baddie_number):
         map_file.seek(0)
         map_file.truncate()
         json.dump(map_list, map_file, indent = 0)
+
+def generate_character():
+    character_file = open("character.txt", "w")
+    character = {}
+    character["health"] = 100
+    character["attack"] = 10
+    character["x"] = 0
+    character["y"] = 0
+    character_file.seek(0)
+    character_file.truncate()
+    json.dump(character, character_file, indent = 0)
+
+def change_character(health, x, y): #If location unchanged, pass in 0, 0 for x, y
+        character_file = open("character.txt", "r+")
+        character = json.loads(character_file.read())
+        character["health"] = health
+        character["attack"] = 10
+        if x == 0 and y == 0: #Doesn't effect if the character is at 0, 0
+            character["x"] = character["x"]
+            character["y"] = character["y"]
+        else:
+            character["x"] = x
+            character["y"] = y
+        character_file.seek(0)
+        character_file.truncate()
+        json.dump(character, character_file, indent = 0)

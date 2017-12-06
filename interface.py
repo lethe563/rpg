@@ -15,7 +15,13 @@ def initial():
         print("Please answer 'y' or 'n'")
     return start
 
-def room(current_x, current_y, health, attack):
+def room():
+    character_file = open("character.txt", "r")
+    character_list = json.loads(character_file.read())
+    current_x = character_list["x"]
+    current_y = character_list["y"]
+    health = character_list["health"]
+    attack = character_list["attack"]
     room_number, room_size, room_material, enemies, number_of_enemies = print_current_room(current_x, current_y)
 
     decision = input("What would you like to do? (a)ttack, ")
