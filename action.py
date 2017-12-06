@@ -6,27 +6,12 @@ import json
 import random
 
 def combat(health, attack, enemies, enemy_number, room_number):
-    #while health > 0 and enemies[enemy_number]["health"] > 0:
-        #command = input("Do you wish to attack? (y/n)d")
-        #if command == "y":
     print("attack: " + str(attack))
     enemies[enemy_number]["health"] -= attack * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
     health -= enemies[enemy_number]["attack"] * random.random() #Damage inflicted on you is your enemy's attack rating times a random number between 0 and 1
     if enemies[enemy_number]["health"] <= 0:
         print("Your enemy is defeated!")
-#    else:
-#        print("Success!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemies[enemy_number]["health"]))
-    enviroment.change_current_room(room_number, enemies[enemy_number]["health"], enemy_number)
-        #elif command == "n":
-        #    health -= enemies[enemy_number]["attack"]
-        #    print("Failure! Just press y next time!\nYour health is now: " + str(health) + "\nYour enemy's health is now: " + str(enemies[enemy_number]["health"]))
-        #    enviroment.change_current_room(room_number, enemies[enemy_number]["health"], enemies[enemy_number])
-        #elif command == "d": #Die for testing
-        #    break
-        #else:
-        #    print("Please enter either y or n.")
-
-    return(health)
+    enviroment.change_current_room(room_number, enemies[enemy_number]["health"], enemy_number, health)
 
 def next_step(first_time, current_x, current_y):
     decision = False #Decision to continue on quest

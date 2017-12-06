@@ -1,0 +1,23 @@
+{
+"1" : {
+"name" : "Sword of destiny",
+"attack rating" : "20",
+"type" : "weapon"
+},
+"2" : {
+"name" : "Sword of smiting",
+"attack rating" : "100",
+"type" : "weapon"
+},
+"3" : {
+"name" : "Armour of Champions",
+"defence rating" : "10",
+"type" : "armour"
+
+},
+"4": {
+"defence rating": "1",
+"name": "Leather helmet",
+"type" : "armour"
+}
+}

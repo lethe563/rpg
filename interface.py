@@ -26,7 +26,7 @@ def room(current_x, current_y, health, attack):
             if attack_enemy_number == 0:
                 attack_mode = action.run()
             elif attack_enemy_number <= number_of_enemies:
-                action.combat(health, attack, enemies, attack_enemy_number, room_number)
+                health = action.combat(health, attack, enemies, attack_enemy_number, room_number)
                 room_number, room_size, room_material, enemies, number_of_enemies = print_current_room(current_x, current_y)
 
 

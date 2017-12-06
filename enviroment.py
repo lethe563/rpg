@@ -23,7 +23,7 @@ def generator(input_x, input_y):
         room = rooms()
         map_list[new_length_of_list]["size"] = room[0]
         map_list[new_length_of_list]["material"] = room[1]
-        number_of_baddies = random.randrange(1, 4) #TODO change to random number of enemies
+        number_of_baddies = random.randrange(1, 4)
         map_list[new_length_of_list]["baddies"] = {}
         map_list[new_length_of_list]["number_of_baddies"] = number_of_baddies
         for i in range(1, number_of_baddies+1): #Populating the room with enemies
@@ -58,7 +58,6 @@ def current_room(current_x, current_y):
             material = map_list[i]["material"]
             number_of_baddies = int(map_list[str(room_number)]["number_of_baddies"])
             for j in range(1, number_of_baddies + 1):
-                print(str(j))
                 baddies[j] = {}
                 baddies[j]["name"] = map_list[str(room_number)]["baddies"][str(j)]["name"]
                 baddies[j]["health"] = float(map_list[i]["baddies"][str(j)]["health"])

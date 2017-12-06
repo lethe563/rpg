@@ -39,3 +39,10 @@ def change_equipment():
             print("Please choose w/a/n")
             made_choice = False
     equipment_file.close()
+
+def loot_pile():
+    loot_file = open("items.txt", "r")
+    loot_list = json.loads(loot_file.read())
+    random_loot = random.choice(list(loot_list))
+    loot = loot_list[random_loot]
+    return baddie
