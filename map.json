@@ -1,0 +1,22 @@
+{
+"1": {
+"material": "Mud",
+"body": "Amour of Steve",
+"number_of_baddies": 2,
+"size": "Big",
+"y": 0,
+"x": 0,
+"baddies": {
+"2": {
+"name": "Cyclops",
+"health": "100",
+"attack": "10"
+},
+"1": {
+"name": "Deadite",
+"health": "50",
+"attack": "5"
+}
+}
+}
+}

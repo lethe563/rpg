@@ -4,6 +4,7 @@ import enviroment
 import interface
 import json
 import random
+import dev_tools
 
 def combat(health, attack, enemies, enemy_number, room_number):
     print("attack: " + str(attack))
@@ -18,7 +19,7 @@ def combat(health, attack, enemies, enemy_number, room_number):
 
 def travel():
 
-    character_file = open("character.txt", "r+")
+    character_file = open("character.json", "r+")
     character = json.loads(character_file.read())
     quest = input("Which direction would you like to go? n/s/e/w")
     if quest == "n":
@@ -35,7 +36,7 @@ def travel():
     json.dump(character, character_file, indent = 0)
 
 def death():
-    character_file = open("character.txt", "r+")
+    character_file = open("character.json", "r+")
     character = json.loads(character_file.read())
 
     if character["health"] <= 0:

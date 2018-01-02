@@ -1,0 +1,12 @@
+{
+"armour": {
+"type": "armour",
+"defence rating": "1",
+"name": "Leather helmet"
+},
+"weapon": {
+"attack rating": "20",
+"name": "Sword of destiny",
+"type": "weapon"
+}
+}

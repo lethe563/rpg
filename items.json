@@ -1,0 +1,34 @@
+{
+"armour": {
+"Leather armour": {
+"description": "A cheap set of leather armour. Doesn't provide much protection.",
+"rating": "10"
+},
+"Amour of Steve": {
+"description": "The amour of a dude",
+"rating": "50"
+},
+"Armour of Champions": {
+"description": "A popular set of cheap mass produced armour. Offers good protection for a low price.",
+"rating": "15"
+},
+"Amour of kings": {
+"description": "The amour of a king",
+"rating": "100"
+}
+},
+"weapon": {
+"Sword of Steve": {
+"rating": "50",
+"description": "The sword of a dude"
+},
+"Sword of smiting": {
+"description": "An old sword of immense strength. Holds the insignia of the god of destruction.",
+"rating": "100"
+},
+"Sword of destiny": {
+"description": "This highly sought after sword is worth a fortune to many collectors, and yet it seems to have a mind of it's own, only finding it's way to a small select few.",
+"rating": "20"
+}
+}
+}

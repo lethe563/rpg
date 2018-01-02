@@ -4,6 +4,7 @@ import enviroment
 import interface
 import json
 import random
+import dev_tools
 
 def main():
     current_x = 0

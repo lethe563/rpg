@@ -4,6 +4,7 @@ import enviroment
 import interface
 import json
 import random
+import dev_tools
 
 def initial():
     quest = input("Would you like to begin? y/n ")
@@ -16,7 +17,7 @@ def initial():
     return start
 
 def room():
-    character_file = open("character.txt", "r")
+    character_file = open("character.json", "r")
     character_list = json.loads(character_file.read())
     current_x = character_list["x"]
     current_y = character_list["y"]
@@ -25,7 +26,7 @@ def room():
     continue_quest = True
     room_number, room_size, room_material, enemies, number_of_enemies = enviroment.current_room(current_x, current_y)
     print_current_room(current_x, current_y)
-    decision = input("What would you like to do? (a)ttack, (t)ravel, (e)quipment, (q)uit: ")
+    decision = input("What would you like to do? (a)ttack, (t)ravel, (e)quipment, (q)uit (d)ev (l)oot: ") #(d)ev is for development only. Will be removed in the full game.
     if decision == "a":
         attack_mode = True
         while attack_mode == True:
@@ -41,6 +42,10 @@ def room():
         equipment.change_equipment()
     elif decision == "q":
         continue_quest = False
+    elif decision == "d":
+        dev_tools.dev()
+    elif decision == "l":
+        equipment.loot("body", "1" )
 
     return continue_quest
 

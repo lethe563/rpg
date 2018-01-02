@@ -4,11 +4,17 @@ import enviroment
 import interface
 import json
 import random
+import dev_tools
+
+default_player_health = 100
+default_player_attack = 10
+default_player_x_location = 0
+default_player_y_location = 0
 
 def generator():
-    map_file = open("map.txt", "r+")
+    map_file = open("map.json", "r+")
     map_list = json.loads(map_file.read())
-    character_file = open("character.txt", "r")
+    character_file = open("character.json", "r")
     character = json.loads(character_file.read())
     current_x = character["x"]
     current_y = character["y"]
@@ -45,14 +51,14 @@ def rooms():
     return room
 
 def baddies():
-    baddies_file = open("baddies.txt", "r") #Open file with list of enemies.
+    baddies_file = open("baddies.json", "r") #Open file with list of enemies.
     baddies_list = json.loads(baddies_file.read()) #Pulling list of enemies and arranging as json.
     random_baddie = random.choice(list(baddies_list)) #Pulling a random enemy name from the list.
     baddie = baddies_list[random_baddie] #Pulling the dictonary for the enemy, by using the name generated in random_baddie line, as a key.
     return baddie
 
 def current_room(current_x, current_y):
-    map_file = open("map.txt", "r+")
+    map_file = open("map.json", "r+")
     map_list = json.loads(map_file.read())
     baddies = {}
     room_number = ""
@@ -75,8 +81,7 @@ def current_room(current_x, current_y):
     return room_number, size, material, baddies, number_of_baddies
 
 def change_current_room(room_number, enemy_health, baddie_number):
-        #print("numbers: " + str(room_number) + str(baddie_number))
-        map_file = open("map.txt", "r+")
+        map_file = open("map.json", "r+")
         map_list = json.loads(map_file.read())
         if enemy_health <= 0:
             map_list[str(room_number)]["baddies"][str(baddie_number)] = "dead" #TODO create loot pile object
@@ -89,18 +94,18 @@ def change_current_room(room_number, enemy_health, baddie_number):
         json.dump(map_list, map_file, indent = 0)
 
 def generate_character():
-    character_file = open("character.txt", "w")
+    character_file = open("character.json", "w")
     character = {}
-    character["health"] = 100
-    character["attack"] = 10
-    character["x"] = 0
-    character["y"] = 0
+    character["health"] = default_player_health
+    character["attack"] = default_player_attack
+    character["x"] = default_player_x_location
+    character["y"] = default_player_y_location
     character_file.seek(0)
     character_file.truncate()
     json.dump(character, character_file, indent = 0)
 
 def change_character(health, x, y): #If location unchanged, pass in 0, 0 for x, y
-        character_file = open("character.txt", "r+")
+        character_file = open("character.json", "r+")
         character = json.loads(character_file.read())
         character["health"] = health
         character["attack"] = 10
