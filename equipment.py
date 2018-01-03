@@ -5,6 +5,7 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
 def change_equipment():
     inventory_file = open("inventory.json", "r+")
@@ -40,17 +41,3 @@ def change_equipment():
             print("Please choose w/a/n")
             made_choice = False
     inventory_file.close()
-
-def loot(container, room_number):
-    map_file = open("map.json", "r+")
-    map_list = json.loads(map_file.read())
-    loot_file = open("items.json", "r")
-    loot_list = json.loads(loot_file.read())
-    loot_type = random.choice(list(loot_list))
-    random_loot = random.choice(list(loot_list[loot_type]))
-    print(random_loot)
-
-    map_list[room_number][container] = random_loot
-    map_file.seek(0)
-    map_file.truncate()
-    json.dump(map_list, map_file, indent = 0)

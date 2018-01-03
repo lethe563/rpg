@@ -5,15 +5,23 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
-def dev():
+def dev(room_number):
     completed = False
     while completed == False:
-        tool = input("(a)dd_item (q)uit")
+        tool = input("(a)dd_item_to_database add_item_to_(c)urrent_room (r)eset_map (q)uit")
         if tool == "a":
             add_item()
         elif tool == "q":
             completed = True
+        elif tool == "c":
+            add_loot(room_number)
+        elif tool == "r":
+            reset_map()
+            enviroment.generate_character()
+            enviroment.generator()
+            print("Map reset")
         else:
             print("Invalid choice")
 
@@ -43,3 +51,14 @@ def add_item(): #Development only. Adds items to the pool of possible items in t
         item_file.seek(0)
         item_file.truncate()
         json.dump(item_list, item_file, indent = 0)
+
+def add_loot(room_number):
+    loot.create_loot("body", room_number)
+
+def reset_map():
+    map_file = open("map.json", "r+")
+    map_list = json.loads(map_file.read())
+    map_list = {}
+    map_file.seek(0)
+    map_file.truncate()
+    json.dump(map_list, map_file, indent = 0)

@@ -5,6 +5,7 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
 def combat(health, attack, enemies, enemy_number, room_number):
     print("attack: " + str(attack))

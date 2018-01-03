@@ -5,6 +5,7 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
 def main():
     current_x = 0

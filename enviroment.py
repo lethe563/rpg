@@ -5,6 +5,7 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
 default_player_health = 100
 default_player_attack = 10
@@ -38,6 +39,9 @@ def generator():
         map_list[new_length_of_list]["number_of_baddies"] = number_of_baddies
         for i in range(1, number_of_baddies+1): #Populating the room with enemies
             map_list[new_length_of_list]["baddies"][i] = baddies()
+        map_list[new_length_of_list]["loot"] = {}
+        map_list[new_length_of_list]["loot"]["body"] = {}
+        map_list[new_length_of_list]["loot"]["chest"] = {}
         map_file.seek(0)
         map_file.truncate()
         json.dump(map_list, map_file, indent = 0)

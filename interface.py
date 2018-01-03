@@ -5,6 +5,7 @@ import interface
 import json
 import random
 import dev_tools
+import loot
 
 def initial():
     quest = input("Would you like to begin? y/n ")
@@ -43,9 +44,9 @@ def room():
     elif decision == "q":
         continue_quest = False
     elif decision == "d":
-        dev_tools.dev()
+        dev_tools.dev(room_number)
     elif decision == "l":
-        equipment.loot("body", "1" )
+        loot.take_loot(room_number)
 
     return continue_quest
 
