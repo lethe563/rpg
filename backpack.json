@@ -1,14 +1,26 @@
 {
-"1": {
-"rating": "50",
-"type": "armour",
-"name": "Amour of Steve",
-"description": "The amour of a dude"
-},
 "2": {
+"description": "The amour of a king",
+"name": "Amour of kings",
+"type": "armour",
+"rating": "100"
+},
+"1": {
+"description": "The amour of a dude",
+"name": "Amour of Steve",
+"type": "armour",
+"rating": "50"
+},
+"4": {
+"description": "This highly sought after sword is worth a fortune to many collectors, and yet it seems to have a mind of it's own, only finding it's way to a small select few.",
+"name": "Sword of destiny",
 "type": "weapon",
-"name": "Sword of smiting",
+"rating": "20"
+},
+"3": {
 "description": "An old sword of immense strength. Holds the insignia of the god of destruction.",
+"name": "Sword of smiting",
+"type": "weapon",
 "rating": "100"
 }
 }

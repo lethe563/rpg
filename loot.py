@@ -42,7 +42,6 @@ def take_loot(room_number):
         else:
             print("Please choose either (b)ody or (c)hest")
 
-#    number_of_items = len(map_list[room_number]["loot"][loot_container])
     for item in (map_list[room_number]["loot"][loot_container]):
         print(str(item) + ": " + str(map_list[room_number]["loot"][loot_container][item][0]) + " (" + str(map_list[room_number]["loot"][loot_container][item][1]) + ")")
     loot_choice = input("What would you like to take (number) (0 for quit)?: ")
@@ -50,7 +49,6 @@ def take_loot(room_number):
         loot_item = map_list[room_number]["loot"][loot_container][loot_choice][0]
         loot_type = map_list[room_number]["loot"][loot_container][loot_choice][1]
         for i in range(len(map_list[room_number]["loot"][loot_container])): #reason for the range() and len() is because otherwise the for loop itterates randomly
-            print(i)
             if i >= int(loot_choice) and int(i) < len(map_list[room_number]["loot"][loot_container]):
                 map_list[room_number]["loot"][loot_container][str(i)] = map_list[room_number]["loot"][loot_container][str(int(i)+1)]
         del map_list[room_number]["loot"][loot_container][str(len(map_list[room_number]["loot"][loot_container]))]

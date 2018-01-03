@@ -1,38 +1,38 @@
 {
 "1": {
-"x": 0,
-"material": "Mud",
-"size": "Big",
+"number_of_baddies": 2,
+"y": 0,
 "loot": {
 "chest": {},
 "body": {
-"1": [
-"Leather armour",
-"armour"
-],
 "2": [
-"Leather armour",
-"armour"
+"Sword of smiting",
+"weapon"
 ],
 "3": [
-"Leather armour",
+"Armour of Champions",
+"armour"
+],
+"1": [
+"Amour of kings",
 "armour"
 ]
 }
 },
-"y": 0,
+"material": "Wood",
 "baddies": {
-"1": {
-"attack": "5",
-"name": "Deadite",
-"health": "50"
-},
 "2": {
-"attack": "5",
+"health": "100",
+"name": "Cyclops",
+"attack": "10"
+},
+"1": {
+"health": "50",
 "name": "Deadite",
-"health": "50"
+"attack": "5"
 }
 },
-"number_of_baddies": 2
+"size": "Medium",
+"x": 0
 }
 }

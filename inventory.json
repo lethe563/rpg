@@ -1,12 +1,14 @@
 {
-"armour": {
-"type": "armour",
-"defence rating": "1",
-"name": "Leather helmet"
-},
 "weapon": {
-"attack rating": "20",
+"description": "This highly sought after sword is worth a fortune to many collectors, and yet it seems to have a mind of it's own, only finding it's way to a small select few.",
 "name": "Sword of destiny",
-"type": "weapon"
+"type": "weapon",
+"rating": "20"
+},
+"armour": {
+"description": "A popular set of cheap mass produced armour. Offers good protection for a low price.",
+"name": "Armour of Champions",
+"type": "armour",
+"rating": "15"
 }
 }
