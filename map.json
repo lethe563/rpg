@@ -1,37 +1,38 @@
 {
 "1": {
-"baddies": {
-"1": {
-"name": "Cyclops",
-"health": "100",
-"attack": "10"
-}
-},
-"material": "Metal",
-"y": 0,
-"size": "Big",
 "x": 0,
+"material": "Mud",
+"size": "Big",
 "loot": {
 "chest": {},
 "body": {
-"2": [
-"Sword of smiting",
-"weapon"
-],
 "1": [
-"Sword of smiting",
-"weapon"
+"Leather armour",
+"armour"
+],
+"2": [
+"Leather armour",
+"armour"
 ],
 "3": [
 "Leather armour",
 "armour"
-],
-"4": [
-"Sword of Steve",
-"weapon"
 ]
 }
 },
-"number_of_baddies": 1
+"y": 0,
+"baddies": {
+"1": {
+"attack": "5",
+"name": "Deadite",
+"health": "50"
+},
+"2": {
+"attack": "5",
+"name": "Deadite",
+"health": "50"
+}
+},
+"number_of_baddies": 2
 }
 }

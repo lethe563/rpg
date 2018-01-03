@@ -34,42 +34,37 @@ def take_loot(room_number):
     while made_choice == False:
         loot_choice = input("would you like to take loot from a (b)ody or a (c)hest?") #I believe this approach will make more sense for a gui in the finished product.
         if loot_choice == "b":
-            loot_type = "body"
+            loot_container = "body"
             made_choice = True
         elif loot_choice == "c":
-            loot_type = "chest"
+            loot_container = "chest"
             made_choice = True
         else:
             print("Please choose either (b)ody or (c)hest")
 
-#    number_of_items = len(map_list[room_number]["loot"][loot_type])
-    for item in (map_list[room_number]["loot"][loot_type]):
-        print(str(item) + ": " + str(map_list[room_number]["loot"][loot_type][item][0]) + " (" + str(map_list[room_number]["loot"][loot_type][item][1]) + ")")
+#    number_of_items = len(map_list[room_number]["loot"][loot_container])
+    for item in (map_list[room_number]["loot"][loot_container]):
+        print(str(item) + ": " + str(map_list[room_number]["loot"][loot_container][item][0]) + " (" + str(map_list[room_number]["loot"][loot_container][item][1]) + ")")
     loot_choice = input("What would you like to take (number) (0 for quit)?: ")
     if loot_choice != "0":
-        loot_item = map_list[room_number]["loot"][loot_type][loot_choice][0]
-        for i in range(len(map_list[room_number]["loot"][loot_type])): #reason for the range() and len() is because otherwise the for loop itterates randomly
+        loot_item = map_list[room_number]["loot"][loot_container][loot_choice][0]
+        loot_type = map_list[room_number]["loot"][loot_container][loot_choice][1]
+        for i in range(len(map_list[room_number]["loot"][loot_container])): #reason for the range() and len() is because otherwise the for loop itterates randomly
             print(i)
-            if i >= int(loot_choice) and int(i) < len(map_list[room_number]["loot"][loot_type]):
-                map_list[room_number]["loot"][loot_type][str(i)] = map_list[room_number]["loot"][loot_type][str(int(i)+1)]
-
-        del map_list[room_number]["loot"][loot_type][str(len(map_list[room_number]["loot"][loot_type]))]
-    #    print("length" + str(len(map_list[room_number]["loot"][loot_type])))
-#            elif i == len(map_list[room_number]["loot"][loot_type])-1:
-#                del map_list[room_number]["loot"][loot_type][str(i-1)]
-        #del map_list[room_number]["loot"][loot_type][loot_choice]
-        #print("length = " + str(len(map_list[room_number]["loot"][loot_type])))
-        #for i in map_list[room_number]["loot"][loot_type]:
-        #    if i > loot_choice and int(i) < len(map_list[room_number]["loot"][loot_type])+1:
-        #        print("i : " + i)
-        #        map_list[room_number]["loot"][loot_type][str(i)] = map_list[room_number]["loot"][loot_type][str(int(i)+1)]
-
+            if i >= int(loot_choice) and int(i) < len(map_list[room_number]["loot"][loot_container]):
+                map_list[room_number]["loot"][loot_container][str(i)] = map_list[room_number]["loot"][loot_container][str(int(i)+1)]
+        del map_list[room_number]["loot"][loot_container][str(len(map_list[room_number]["loot"][loot_container]))]
         print(loot_item)
+        backpack_list[str(len(backpack_list)+1)] = {}
+        backpack_list[str(len(backpack_list))]["name"] = loot_item
+        backpack_list[str(len(backpack_list))]["type"] = loot_type
+        backpack_list[str(len(backpack_list))]["rating"] = items_list[loot_type][loot_item]["rating"]
+        backpack_list[str(len(backpack_list))]["description"] = items_list[loot_type][loot_item]["description"]
 
 
-
-
-
+    backpack_file.seek(0)
+    backpack_file.truncate()
+    json.dump(backpack_list, backpack_file, indent = 0)
     map_file.seek(0)
     map_file.truncate()
     json.dump(map_list, map_file, indent = 0)
