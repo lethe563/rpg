@@ -6,17 +6,19 @@ import json
 import random
 import dev_tools
 import loot
+import generate
 
 def combat(health, attack, enemies, enemy_number, room_number):
-    print("attack: " + str(attack))
-    enemies[enemy_number]["health"] -= attack * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
+    inventory_file = open("inventory.json", "r")
+    inventory_list = json.loads(inventory_file.read())
+    enemies[enemy_number]["health"] -= ((attack + float(inventory_list["weapon"]["rating"]))/2) * random.random() #Damage inflicted on enemy is your attack rating times a random number between 0 and 1
     health -= enemies[enemy_number]["attack"] * random.random() #Damage inflicted on you is your enemy's attack rating times a random number between 0 and 1
     if enemies[enemy_number]["health"] <= 0:
         print("Your enemy is defeated!")
+        generate.loot("body", room_number)    
     enviroment.change_current_room(room_number, enemies[enemy_number]["health"], enemy_number)
     enviroment.change_character(health, 0, 0)
     return health, enemies, enemy_number
-
 
 def travel():
 

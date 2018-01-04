@@ -1,26 +1,38 @@
 {
-"2": {
-"description": "The amour of a king",
-"name": "Amour of kings",
-"type": "armour",
-"rating": "100"
-},
 "1": {
 "description": "The amour of a dude",
 "name": "Amour of Steve",
-"type": "armour",
-"rating": "50"
+"rating": "50",
+"type": "armour"
 },
-"4": {
-"description": "This highly sought after sword is worth a fortune to many collectors, and yet it seems to have a mind of it's own, only finding it's way to a small select few.",
-"name": "Sword of destiny",
+"6": {
+"description": "An old sword of immense strength. Holds the insignia of the god of destruction.",
 "type": "weapon",
-"rating": "20"
+"rating": "100",
+"name": "Sword of smiting"
+},
+"2": {
+"description": "The amour of a king",
+"name": "Amour of kings",
+"rating": "100",
+"type": "armour"
 },
 "3": {
 "description": "An old sword of immense strength. Holds the insignia of the god of destruction.",
 "name": "Sword of smiting",
-"type": "weapon",
-"rating": "100"
+"rating": "100",
+"type": "weapon"
+},
+"4": {
+"description": "This highly sought after sword is worth a fortune to many collectors, and yet it seems to have a mind of it's own, only finding it's way to a small select few.",
+"name": "Sword of destiny",
+"rating": "20",
+"type": "weapon"
+},
+"5": {
+"description": "A cheap set of leather armour. Doesn't provide much protection.",
+"name": "Leather armour",
+"rating": "10",
+"type": "armour"
 }
 }

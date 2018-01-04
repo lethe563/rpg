@@ -6,6 +6,8 @@ import json
 import random
 import dev_tools
 import loot
+import generate
+
 
 def initial():
     quest = input("Would you like to begin? y/n ")

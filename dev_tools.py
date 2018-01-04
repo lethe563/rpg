@@ -6,6 +6,7 @@ import json
 import random
 import dev_tools
 import loot
+import generate
 
 def dev(room_number):
     completed = False
@@ -53,7 +54,7 @@ def add_item(): #Development only. Adds items to the pool of possible items in t
         json.dump(item_list, item_file, indent = 0)
 
 def add_loot(room_number):
-    loot.create_loot("body", room_number)
+    generate.loot("body", room_number)
 
 def reset_map():
     map_file = open("map.json", "r+")

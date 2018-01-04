@@ -6,6 +6,7 @@ import json
 import random
 import dev_tools
 import loot
+import generate
 
 default_player_health = 100
 default_player_attack = 10
@@ -27,24 +28,14 @@ def generator():
             break
 
     if traveled_to == False:
-        new_length_of_list = len(map_list)+1 #Room number
-        map_list[new_length_of_list] = {}
-        map_list[new_length_of_list]["x"] = current_x
-        map_list[new_length_of_list]["y"] = current_y
-        room = rooms()
-        map_list[new_length_of_list]["size"] = room[0]
-        map_list[new_length_of_list]["material"] = room[1]
-        number_of_baddies = random.randrange(1, 4)
-        map_list[new_length_of_list]["baddies"] = {}
-        map_list[new_length_of_list]["number_of_baddies"] = number_of_baddies
-        for i in range(1, number_of_baddies+1): #Populating the room with enemies
-            map_list[new_length_of_list]["baddies"][i] = baddies()
-        map_list[new_length_of_list]["loot"] = {}
-        map_list[new_length_of_list]["loot"]["body"] = {}
-        map_list[new_length_of_list]["loot"]["chest"] = {}
-        map_file.seek(0)
-        map_file.truncate()
-        json.dump(map_list, map_file, indent = 0)
+        room_number = generate.room(current_x, current_y)
+        number_of_enemies = random.randrange(1, 4)
+        generate.enemies(number_of_enemies, room_number)
+        number_of_chests = random.randrange(1, 4)
+        print(number_of_chests)
+        for i in range(number_of_chests):
+            generate.loot("chest", room_number)
+
 
 def rooms():
     material_list = ["Wood", "Stone", "Metal", "Mud"] #Possible materials
@@ -54,21 +45,14 @@ def rooms():
     room = [size, material] #Building room
     return room
 
-def baddies():
-    baddies_file = open("baddies.json", "r") #Open file with list of enemies.
-    baddies_list = json.loads(baddies_file.read()) #Pulling list of enemies and arranging as json.
-    random_baddie = random.choice(list(baddies_list)) #Pulling a random enemy name from the list.
-    baddie = baddies_list[random_baddie] #Pulling the dictonary for the enemy, by using the name generated in random_baddie line, as a key.
-    return baddie
-
 def current_room(current_x, current_y):
     map_file = open("map.json", "r+")
     map_list = json.loads(map_file.read())
-    baddies = {}
+    enemies = {}
     room_number = ""
     size = ""
     material = ""
-    number_of_baddies = ""
+    number_of_enemies = ""
     for i in map_list:
         if map_list[i]["x"] == current_x and map_list[i]["y"] == current_y:
             room_number = i
@@ -76,26 +60,30 @@ def current_room(current_x, current_y):
             material = map_list[i]["material"]
             size = map_list[str(i)]["size"]
             material = map_list[str(i)]["material"]
-            number_of_baddies = int(map_list[str(i)]["number_of_baddies"])
-            for j in range(1, number_of_baddies + 1):
-                baddies[j] = {}
-                baddies[j]["name"] = map_list[str(i)]["baddies"][str(j)]["name"]
-                baddies[j]["health"] = float(map_list[i]["baddies"][str(j)]["health"])
-                baddies[j]["attack"] = int(map_list[i]["baddies"][str(j)]["attack"])
-    return room_number, size, material, baddies, number_of_baddies
+            number_of_enemies = int(map_list[str(i)]["number_of_enemies"])
+            for j in range(1, number_of_enemies + 1):
+                enemies[j] = {}
+                enemies[j]["name"] = map_list[str(i)]["enemies"][str(j)]["name"]
+                enemies[j]["health"] = float(map_list[i]["enemies"][str(j)]["health"])
+                enemies[j]["attack"] = int(map_list[i]["enemies"][str(j)]["attack"])
+    return room_number, size, material, enemies, number_of_enemies
 
-def change_current_room(room_number, enemy_health, baddie_number):
-        map_file = open("map.json", "r+")
-        map_list = json.loads(map_file.read())
-        if enemy_health <= 0:
-            map_list[str(room_number)]["baddies"][str(baddie_number)] = "dead" #TODO create loot pile object
-            map_list[str(room_number)]["number_of_baddies"] -= 1
-
-        else:
-            map_list[room_number]["baddies"][str(baddie_number)]["health"] = enemy_health
-        map_file.seek(0)
-        map_file.truncate()
-        json.dump(map_list, map_file, indent = 0)
+def change_current_room(room_number, enemy_health, enemy_number):
+    map_file = open("map.json", "r+")
+    map_list = json.loads(map_file.read())
+    total_enemies = map_list[room_number]["number_of_enemies"]
+    if enemy_health <= 0:
+        for i in range(len(map_list[str(room_number)]["enemies"][str(enemy_number)])): #reason for the range() and len() is because otherwise the for loop itterates randomly
+            if int(i) >= int(enemy_number) and int(i) < total_enemies:
+                map_list[room_number]["enemies"][str(i)] = map_list[room_number]["enemies"][str(i+1)]
+        del map_list[str(room_number)]["enemies"][str(total_enemies)]
+        generate.loot("body", room_number)
+        map_list[str(room_number)]["number_of_enemies"] -= 1
+    else:
+        map_list[room_number]["enemies"][str(enemy_number)]["health"] = enemy_health
+    map_file.seek(0)
+    map_file.truncate()
+    json.dump(map_list, map_file, indent = 0)
 
 def generate_character():
     character_file = open("character.json", "w")

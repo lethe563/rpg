@@ -6,20 +6,8 @@ import json
 import random
 import dev_tools
 import loot
+import generate
 
-def create_loot(container, room_number):
-    map_file = open("map.json", "r+")
-    map_list = json.loads(map_file.read())
-    loot_file = open("items.json", "r")
-    loot_list = json.loads(loot_file.read())
-    loot_type = random.choice(list(loot_list))
-    random_loot = random.choice(list(loot_list[loot_type]))
-    number_of_loot_items = len(map_list[room_number]["loot"][container])
-    map_list[room_number]["loot"][container][number_of_loot_items + 1] = random_loot, loot_type
-    print(map_list[room_number]["loot"][container])
-    map_file.seek(0)
-    map_file.truncate()
-    json.dump(map_list, map_file, indent = 0)
 
 def take_loot(room_number):
     map_file = open("map.json", "r+")
